@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prawn Count Predictor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Prawn Count Predictor</h2>
+        <form id="predictionForm">
+            <label>No of Prawns:</label>
+            <input type="number" step="any" name="No_of_Prawns" required>
+
+            <label>Age of Pond (months):</label>
+            <input type="number" step="any" name="Age_of_Pond" required>
+
+            <label>Food Intake (kg):</label>
+            <input type="number" step="any" name="Food_Intake" required>
+
+            <label>Season:</label>
+            <select name="Season">
+                <option value="Summer">Summer</option>
+                <option value="Winter">Winter</option>
+                <option value="Rainy">Rainy</option>
+            </select>
+
+            <button type="submit">Predict</button>
+        </form>
+
+        <h3>Predicted Prawn Count: <span id="predictionResult"></span></h3>
+    </div>
+
+    <script>
+        document.getElementById("predictionForm").onsubmit = async function(event) {
+            event.preventDefault();
+            let formData = new FormData(event.target);
+
+            let response = await fetch("/predict", {
+                method: "POST",
+                body: formData
+            });
+
+            let result = await response.json();
+            document.getElementById("predictionResult").innerText = result.prediction || "Error!";
+        };
+    </script>
+</body>
+</html>

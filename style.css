@@ -1,0 +1,22 @@
+body {
+    font-family: Arial, sans-serif;
+    background: url("pond_background.jpg") no-repeat center center fixed;
+    background-size: cover;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.container {
+    width: 400px;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    margin: auto;
+}
+
+input, select, button {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+}
